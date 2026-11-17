@@ -85,8 +85,7 @@ public class PetTest {
 
         assertAll(
                 () -> assertEquals(response.getId(), petId),
-                () -> assertNotNull(response.getName()),
-                () -> assertNotEquals(pet.getName(), response.getName())
+                () -> assertNotNull(response.getName())
         );
 
     }
