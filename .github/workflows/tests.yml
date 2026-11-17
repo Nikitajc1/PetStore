@@ -1,0 +1,30 @@
+
+name: SwagLabs CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '27'
+          cache: maven
+
+      - name: Run tests
+        run: mvn -B -Dheadless=true clean test
+
+
