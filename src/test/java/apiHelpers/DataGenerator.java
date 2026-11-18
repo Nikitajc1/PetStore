@@ -7,7 +7,11 @@ public class DataGenerator {
             "Cosmo",
             "Pluto",
             "Bob",
-            "Colt"
+            "Colt",
+            "Test",
+            "Mini",
+            "Boy",
+            "Bigi"
     };
 
     private final String[] categories = {

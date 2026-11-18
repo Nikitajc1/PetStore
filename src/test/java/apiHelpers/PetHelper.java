@@ -9,7 +9,7 @@ import petModels.PetTags;
 import static io.restassured.RestAssured.given;
 
 public class PetHelper {
-    private final InfoApi info = new InfoApi();
+    private final ApiConfig info = new ApiConfig();
     private final DataGenerator generator = new DataGenerator();
 
 

@@ -2,10 +2,10 @@ package petModels;
 
 public class PetObject {
     private final int id;
-    private PetCategory category;
-    private String name;
-    private String[] photoUrls;
-    private PetTags[] tags;
+    private final PetCategory category;
+    private final String name;
+    private final String[] photoUrls;
+    private final PetTags[] tags;
     private final String status;
 
     public PetObject(int id, PetCategory category, String nameOfPet, String urlsOfPhoto, PetTags tags, String status) {

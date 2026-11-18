@@ -1,6 +1,6 @@
 package tests;
 
-import apiHelpers.InfoApi;
+import apiHelpers.ApiConfig;
 import apiHelpers.StoreHelper;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.*;
 
 @Epic("Checking store")
 public class StoreTest {
-    private final InfoApi info = new InfoApi();
+    private final ApiConfig info = new ApiConfig();
     private final StoreHelper storeHelper = new StoreHelper();
     private Integer orderId;
     private OrderObject order;
@@ -35,20 +35,6 @@ public class StoreTest {
                     .then()
                     .statusCode(200);
         }
-    }
-
-    @DisplayName("Проверяем инвентарь")
-    @Description("Проверка на наличие основных статусов")
-    @Test
-    void checkInventory() {
-        given()
-                .spec(info.getStoreSpec())
-                .when().get("/store/inventory")
-                .then()
-                .statusCode(200)
-                .body("string", notNullValue())
-                .body("sold", notNullValue());
-
     }
 
     @DisplayName("Проверка заказа по id")

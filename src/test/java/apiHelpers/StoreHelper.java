@@ -6,7 +6,7 @@ import java.time.OffsetDateTime;
 import static io.restassured.RestAssured.given;
 
 public class StoreHelper {
-    private final InfoApi info = new InfoApi();
+    private final ApiConfig info = new ApiConfig();
     private final DataGenerator data = new DataGenerator();
 
     public OrderObject newOrder(){

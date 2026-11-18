@@ -4,11 +4,11 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
-public class InfoApi {
+public class ApiConfig {
     private final String urlOfStore = "https://petstore.swagger.io/v2";
     private final RequestSpecification storeSpec;
 
-    public InfoApi() {
+    public ApiConfig() {
         storeSpec = new RequestSpecBuilder()
                 .setBaseUri(urlOfStore)
                 .setContentType(ContentType.JSON)

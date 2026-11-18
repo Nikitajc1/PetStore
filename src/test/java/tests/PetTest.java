@@ -1,6 +1,6 @@
 package tests;
 
-import apiHelpers.InfoApi;
+import apiHelpers.ApiConfig;
 import apiHelpers.PetHelper;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Epic("Pet tests")
 @Feature("API of pets")
 public class PetTest {
-    private final InfoApi info = new InfoApi();
+    private final ApiConfig info = new ApiConfig();
     private final PetHelper help = new PetHelper();
     private Integer petId;
     private PetObject pet;
