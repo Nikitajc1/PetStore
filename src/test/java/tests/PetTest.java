@@ -1,8 +1,7 @@
-package petTests;
+package tests;
 
 import apiHelpers.InfoApi;
 import apiHelpers.PetHelper;
-import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -14,17 +13,17 @@ import org.junit.jupiter.api.Test;
 import petModels.PetObject;
 import petModels.PetResponseData;
 import petModels.PetTags;
-
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Epic("Pet tests")
 @Feature("API of pets")
 public class PetTest {
-    InfoApi info = new InfoApi();
-    PetHelper help = new PetHelper();
+    private final InfoApi info = new InfoApi();
+    private final PetHelper help = new PetHelper();
     private Integer petId;
-    PetObject pet;
+    private PetObject pet;
 
     @BeforeEach
     void createPet() {
@@ -110,5 +109,25 @@ public class PetTest {
                 .then()
                 .statusCode(404);
     }
+
+    @DisplayName("Проверка на создание с невалидным полем")
+    @Description("Проверяем поле name")
+    @Test
+    void checkNonValidPet() {
+        given()
+                .spec(info.getStoreSpec())
+                .body("""
+                        {
+                        "name": '123'
+                        }
+                        """)
+                .when().post("/pet")
+                .then()
+                .statusCode(400)
+                .body("message", equalTo("bad input"));
+
+    }
+
+
 
 }

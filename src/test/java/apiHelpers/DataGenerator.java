@@ -30,6 +30,14 @@ public class DataGenerator {
             "sold"
     };
 
+    private final int[] orderId = {
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    };
+
+    private final String[] statusOfOrder = {
+            "placed", "approved", "delivered"
+    };
+
     public String generateValidName() {
         return names[RandomGenerator.getDefault().nextInt(names.length)];
     }
@@ -46,7 +54,11 @@ public class DataGenerator {
         return statuses[RandomGenerator.getDefault().nextInt(statuses.length)];
     }
 
-    public void main() {
-        System.out.println(generateValidName());
+    public int generateOrderId() {
+        return orderId[RandomGenerator.getDefault().nextInt(orderId.length)];
+    }
+
+    public String generateOrderStatus() {
+        return statusOfOrder[RandomGenerator.getDefault().nextInt(statusOfOrder.length)];
     }
 }

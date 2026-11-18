@@ -1,5 +1,5 @@
 
-name: SwagLabs CI
+name: PetStore CI
 
 on:
   push:
