@@ -51,7 +51,9 @@ public class StoreTest {
                                 "schemas/order-schema.json"))
                 .body("id" , equalTo(order.getId()))
                 .body("petId", equalTo(order.getPetId()))
-                .body("quantity", equalTo(order.getQuantity()));
+                .body("quantity", equalTo(order.getQuantity()))
+                .body("status", equalTo(order.getStatus()))
+                .body("complete", is(order.isComplete()));
     }
 
     @DisplayName("Создаём фейковый заказ")

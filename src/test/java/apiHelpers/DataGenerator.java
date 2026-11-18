@@ -25,7 +25,11 @@ public class DataGenerator {
             "defaultTag",
             "anotherTag",
             "thirdTag",
-            "tagTag"
+            "tagTag",
+            "testTag",
+            "asd",
+            "final",
+            "continue"
     };
 
     private final String[] statuses = {

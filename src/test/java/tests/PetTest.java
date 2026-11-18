@@ -60,6 +60,7 @@ public class PetTest {
 
         PetTags[] tags = response.getTags();
         assertNotNull(tags);
+        assertTrue(tags.length > 0);
 
         assertAll(
                 () -> assertEquals(response.getId(), petId),
@@ -77,11 +78,13 @@ public class PetTest {
     @Description("Сначала создаем нового питомца, заменяем данные и сверяем")
     @Test
     void updatePet() {
+        PetObject updatedPet = help.updatedPet(petId);
+
         PetResponseData response = given()
                 .baseUri(info.getUrlOfStore())
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .body(help.updatedPet(petId))
+                .body(updatedPet)
                 .when().put("/pet")
                 .then()
                 .statusCode(200)
@@ -94,7 +97,7 @@ public class PetTest {
                 () -> assertEquals(petId, response.getId()),
                 () -> assertNotNull(response.getName()),
                 () -> assertNotEquals(pet.getName(), response.getName()),
-                () -> assertNotEquals(pet.getTags(), response.getTags()),
+                () -> assertNotEquals(pet.getTags()[0].getName(), response.getTags()[0].getName()),
                 () -> assertNotEquals(pet.getCategory().getName(),
                         response.getCategory().getName())
         );
