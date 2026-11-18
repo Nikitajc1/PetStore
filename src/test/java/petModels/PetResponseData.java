@@ -5,10 +5,8 @@ public class PetResponseData {
     private PetCategory category;
     private String name;
     private String[] photoUrls;
-    private String status;
     private PetTags[] tags;
-
-    public PetResponseData(){}
+    private String status;
 
     public PetCategory getCategory() {
         return category;

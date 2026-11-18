@@ -22,8 +22,8 @@ public class PetHelper {
                 category,
                 generator.generateValidName(),
                 "",
-                generator.generateStatus(),
-                tags
+                tags,
+                generator.generateStatus()
         );
     }
 
@@ -36,8 +36,8 @@ public class PetHelper {
                 category,
                 generator.generateValidName(),
                 "",
-                generator.generateStatus(),
-                tags
+                tags,
+                generator.generateStatus()
         );
 
     }

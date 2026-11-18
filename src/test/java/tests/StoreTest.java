@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import storeModels.OrderObject;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.*;
 
 @Epic("Checking store")
@@ -59,6 +60,9 @@ public class StoreTest {
                 .when().get("/store/order/" + orderId)
                 .then()
                 .statusCode(200)
+                .body(
+                        matchesJsonSchemaInClasspath(
+                                "schemas/order-schema.json"))
                 .body("id" , equalTo(order.getId()))
                 .body("petId", equalTo(order.getPetId()))
                 .body("quantity", equalTo(order.getQuantity()));

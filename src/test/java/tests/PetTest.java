@@ -14,6 +14,7 @@ import petModels.PetObject;
 import petModels.PetResponseData;
 import petModels.PetTags;
 import static io.restassured.RestAssured.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,6 +53,9 @@ public class PetTest {
                 .when().get("/pet/" + petId)
                 .then()
                 .statusCode(200)
+                .body(
+                        matchesJsonSchemaInClasspath(
+                                "schemas/pet-schema.json"))
                 .extract().as(PetResponseData.class);
 
         PetTags[] tags = response.getTags();
@@ -80,6 +84,9 @@ public class PetTest {
                 .when().put("/pet")
                 .then()
                 .statusCode(200)
+                .body(
+                        matchesJsonSchemaInClasspath(
+                                "schemas/pet-schema.json"))
                 .extract().as(PetResponseData.class);
 
         assertAll(

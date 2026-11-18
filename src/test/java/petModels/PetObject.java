@@ -5,16 +5,16 @@ public class PetObject {
     private PetCategory category;
     private String name;
     private String[] photoUrls;
-    private String status;
     private PetTags[] tags;
+    private final String status;
 
-    public PetObject(int id, PetCategory category, String nameOfPet, String urlsOfPhoto, String status, PetTags tags) {
+    public PetObject(int id, PetCategory category, String nameOfPet, String urlsOfPhoto, PetTags tags, String status) {
         this.id = id;
         this.category = category;
         this.name = nameOfPet;
         this.photoUrls = new String[]{urlsOfPhoto};
-        this.status = status;
         this.tags = new PetTags[]{tags};
+        this.status = status;
     }
 
     public PetCategory getCategory() {
@@ -33,4 +33,7 @@ public class PetObject {
         return id;
     }
 
+    public String getStatus() {
+        return status;
+    }
 }
