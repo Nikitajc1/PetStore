@@ -2,7 +2,7 @@ package apiHelpers;
 
 import io.restassured.specification.RequestSpecification;
 import storeModels.OrderObject;
-import static org.hamcrest.Matchers.equalTo;
+import java.time.OffsetDateTime;
 import static io.restassured.RestAssured.given;
 
 public class StoreHelper {
@@ -14,8 +14,8 @@ public class StoreHelper {
                 data.generateOrderId(),
                 2,
                 2,
-                "2026-11-18T06:01:38.240+00:00",
-                data.generateStatus(),
+                OffsetDateTime.now().toString(),
+                data.generateOrderStatus(),
                 true
         );
     }
@@ -25,12 +25,12 @@ public class StoreHelper {
                 .spec(info.getStoreSpec())
                 .body("""
                         {
-                        "id" = "asd",
-                        "petId" = 123,
-                        "quantity" = 1,
-                        "shipDate" = "asd",
-                        "status" = "asd",
-                        "complete" = true"
+                        "id": "asd",
+                        "petId": 123,
+                        "quantity": 1,
+                        "shipDate": "asd",
+                        "status": "asd",
+                        "complete": "true"
                         }
                         """);
     }

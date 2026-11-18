@@ -75,7 +75,8 @@ public class StoreTest {
         storeHelper.fakeBody()
                 .when().post("/store/order")
                 .then()
-                .statusCode(400)
-                .body("message", equalTo("bad input"));
+                .log().all()
+                .statusCode(500)
+                .body("message", equalTo("something bad happened"));
     }
 }

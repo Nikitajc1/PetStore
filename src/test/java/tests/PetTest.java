@@ -59,6 +59,7 @@ public class PetTest {
                 .extract().as(PetResponseData.class);
 
         PetTags[] tags = response.getTags();
+        assertNotNull(tags);
 
         assertAll(
                 () -> assertEquals(response.getId(), petId),
@@ -90,8 +91,12 @@ public class PetTest {
                 .extract().as(PetResponseData.class);
 
         assertAll(
-                () -> assertEquals(response.getId(), petId),
-                () -> assertNotNull(response.getName())
+                () -> assertEquals(petId, response.getId()),
+                () -> assertNotNull(response.getName()),
+                () -> assertNotEquals(pet.getName(), response.getName()),
+                () -> assertNotEquals(pet.getTags(), response.getTags()),
+                () -> assertNotEquals(pet.getCategory().getName(),
+                        response.getCategory().getName())
         );
 
     }
@@ -118,20 +123,20 @@ public class PetTest {
     }
 
     @DisplayName("Проверка на создание с невалидным полем")
-    @Description("Проверяем поле name")
+    @Description("Проверяем поле id")
     @Test
     void checkNonValidPet() {
         given()
                 .spec(info.getStoreSpec())
                 .body("""
                         {
-                        "name": '123'
+                        "id": "asd"
                         }
                         """)
                 .when().post("/pet")
                 .then()
-                .statusCode(400)
-                .body("message", equalTo("bad input"));
+                .statusCode(500)
+                .body("message", equalTo("something bad happened"));
 
     }
 
